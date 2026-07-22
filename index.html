@@ -287,10 +287,17 @@
 <div class="section" id="menu-section">
   <span class="section-label">step 01 · the (free) menu</span>
   <h2>The hawker centre 🏮</h2>
-  <p class="sub">Forty-one dishes, six cuisines — shabu shabu now joins the legendary ATAS tier. Prices update live and mean nothing.</p>
+  <p class="sub">Twenty-six dishes, five cuisines. Prices update live and mean nothing.</p>
   <div class="tabs" id="tabs"></div>
 </div>
 <div class="menu-grid" id="menuGrid"></div>
+
+<div class="section" id="restaurant-section">
+  <span class="section-label">💎 for the truly extra</span>
+  <h2>The Restaurant</h2>
+  <p class="sub">Fifteen dishes, zero restraint — the ATAS tier gets its own dining room. Still free. Still fake.</p>
+</div>
+<div class="menu-grid" id="restaurantGrid"></div>
 
 <div class="how-wrap" id="how-section">
   <div class="how-inner">
@@ -425,7 +432,7 @@ const DISHES = [
   {id:41, cat:'premium', emoji:'🍲', img:'images/shabu_shabu.jpg', name:'Shabu Shabu', stall:"Edomae Sushi Bar", desc:'Thin-sliced wagyu, tofu, mushrooms and greens, swished in kombu dashi.', price:58.00},
 ];
 const CATS = [
-  {key:'all', label:'All stalls'},{key:'premium', label:'💎 ATAS'},
+  {key:'all', label:'All stalls'},
   {key:'chinese', label:'Chinese'},{key:'malay', label:'Malay'},
   {key:'indian', label:'Indian'},{key:'peranakan', label:'Peranakan'},{key:'kopitiam', label:'Kopitiam'},
 ];
@@ -456,11 +463,8 @@ function renderTabs(){
 }
 function setCat(key){ activeCat=key; renderTabs(); renderMenu(); }
 
-function renderMenu(){
-  const grid = document.getElementById('menuGrid');
-  const list = activeCat==='all' ? DISHES : DISHES.filter(d=>d.cat===activeCat);
-  grid.innerHTML = list.map(d => `
-    <div class="dish-card ${d.cat==='premium'?'premium':''}">
+function dishCardHTML(d){
+  return `<div class="dish-card ${d.cat==='premium'?'premium':''}">
       <div class="dish-photo">${d.cat==='premium'?'<span class="premium-badge">✨ RARE</span>':''}<img src="${d.img}" alt="${d.name}" loading="lazy" onerror="this.parentElement.outerHTML='<div class=&quot;dish-emoji&quot;>${d.emoji}</div>'"></div>
       <div class="dish-top" style="margin-top:2px;"><div></div><div class="dish-tag">${d.cat}</div></div>
       <div><p class="dish-name">${d.name}</p><p class="dish-rating"><span class="stars">${'★'.repeat(Math.round(dishRating(d).stars))}${'☆'.repeat(5-Math.round(dishRating(d).stars))}</span><b>${dishRating(d).stars}</b>(${dishRating(d).reviews})</p></div>
@@ -469,7 +473,19 @@ function renderMenu(){
         <div><span class="dish-old-price">$${(d.price*2).toFixed(2)}</span><span class="dish-price">$${d.price.toFixed(2)}</span></div>
         <button class="add-btn" onclick="openCustomize(${d.id})">Customise +</button>
       </div>
-    </div>`).join('');
+    </div>`;
+}
+function renderMenu(){
+  const grid = document.getElementById('menuGrid');
+  const hawkerDishes = DISHES.filter(d=>d.cat!=='premium');
+  const list = activeCat==='all' ? hawkerDishes : hawkerDishes.filter(d=>d.cat===activeCat);
+  grid.innerHTML = list.map(dishCardHTML).join('');
+}
+function renderRestaurant(){
+  const grid = document.getElementById('restaurantGrid');
+  if(!grid) return;
+  const list = DISHES.filter(d=>d.cat==='premium');
+  grid.innerHTML = list.map(dishCardHTML).join('');
 }
 
 // ---------- customize sheet ----------
@@ -926,6 +942,7 @@ function renderTrending(){
 
 renderTabs();
 renderMenu();
+renderRestaurant();
 renderTrending();
 updateCartUI();
 initStreak();
