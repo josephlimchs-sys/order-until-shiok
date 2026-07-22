@@ -245,7 +245,7 @@
   <div class="hero-visual">
     <span class="stall-sign">🔥 today's queue</span>
     <div class="hero-photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Nasi_lemak_on_banana_leaf.jpg" alt="Nasi lemak" onerror="this.parentElement.outerHTML='<div class=&quot;hero-dish&quot;>🍛</div>'"></div>
-    <div class="hero-dish-name">Nasi Lemak, Auntie Timah's</div>
+    <div class="hero-dish-name">Nasi Lemak</div>
     <div class="hero-dish-sub">rated 4.9 · 0 min wait, forever</div>
     <div class="queue-strip"><span>QUEUE NO. 088</span><span>SERVING: 087</span></div>
   </div>
@@ -411,7 +411,7 @@ function renderMenu(){
     <div class="dish-card">
       <div class="dish-photo"><img src="${d.img}" alt="${d.name}" loading="lazy" onerror="this.parentElement.outerHTML='<div class=&quot;dish-emoji&quot;>${d.emoji}</div>'"></div>
       <div class="dish-top" style="margin-top:2px;"><div></div><div class="dish-tag">${d.cat}</div></div>
-      <div><p class="dish-name">${d.name}</p><p class="dish-stall">${d.stall}</p></div>
+      <div><p class="dish-name">${d.name}</p></div>
       <p class="dish-desc">${d.desc}</p>
       <div class="dish-bottom">
         <div><span class="dish-old-price">$${(d.price*2).toFixed(2)}</span><span class="dish-price">$${d.price.toFixed(2)}</span></div>
@@ -437,7 +437,7 @@ function renderCustomize(d){
     <button class="modal-close" onclick="closeCustomize()">✕</button>
     <div class="cust-photo"><img src="${d.img}" alt="${d.name}" onerror="this.parentElement.style.display='none'"></div>
     <p class="cust-name" style="text-align:center;">${d.name}</p>
-    <p class="sub" style="text-align:center;">${d.stall}</p>
+    <p class="sub" style="text-align:center;">${d.desc}</p>
     ${OPT_GROUPS.map((g,gi)=>`
       <div class="cust-group">
         <div class="cust-glabel">${g[0]}</div>
