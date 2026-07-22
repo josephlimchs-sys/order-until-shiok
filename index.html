@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MakanNeverComes — order the makan, skip the bill</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230E5C57'/%3E%3Ccircle cx='32' cy='32' r='28' fill='none' stroke='%23E3A73D' stroke-width='3'/%3E%3Ctext x='32' y='42' font-size='34' text-anchor='middle'%3E%F0%9F%8D%9C%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -239,7 +241,7 @@
     <div class="hero-stats">
       <div><b id="statOrders">0</b>orders "delivered"</div>
       <div><b>$0.00</b>spent, forever</div>
-      <div><b>16</b>stalls open now</div>
+      <div><b>20</b>stalls open now</div>
     </div>
   </div>
   <div class="hero-visual">
@@ -260,7 +262,7 @@
 <div class="section" id="menu-section">
   <span class="section-label">step 01 · the (free) menu</span>
   <h2>The hawker centre 🏮</h2>
-  <p class="sub">Sixteen stalls, four cuisines, one imaginary void deck. Prices update live and mean nothing.</p>
+  <p class="sub">Twenty dishes, five cuisines, one imaginary void deck. Prices update live and mean nothing.</p>
   <div class="tabs" id="tabs"></div>
 </div>
 <div class="menu-grid" id="menuGrid"></div>
@@ -365,7 +367,7 @@
 <script>
 const WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
 const DISHES = [
-  {id:1, cat:'chinese', emoji:'🍗', img:WM+'Tian_Tian_Hainanese_Chicken_Rice,_Singapore.JPG', name:'Hainanese chicken rice', stall:"Tian Tian's Stall", desc:'Poached chicken, fragrant rice, chilli-ginger sauce.', price:4.50},
+  {id:1, cat:'chinese', emoji:'🍗', img:WM+'Home-cooked_Hainanese_chicken_rice.jpg', name:'Hainanese chicken rice', stall:"Tian Tian's Stall", desc:'Poached chicken, fragrant rice, chilli-ginger sauce.', price:4.50},
   {id:2, cat:'chinese', emoji:'🍜', img:WM+'Char_kway_teow.jpg', name:'Char kway teow', stall:"Wok Hei Corner", desc:'Flat rice noodles, cockles, lap cheong, dark soy.', price:5.00},
   {id:3, cat:'chinese', emoji:'🍲', img:WM+'Bak_chor_mee_and_soup.jpg', name:'Bak chor mee', stall:"Ah Kow Noodle House", desc:'Minced pork noodles, vinegar, chilli, pork lard.', price:4.80},
   {id:4, cat:'chinese', emoji:'🦐', img:WM+'Singapore_style_Hokkien_mee.jpg', name:'Hokkien mee', stall:"Geylang Prawn Mee", desc:'Prawn stock noodles, squid, pork belly.', price:5.50},
@@ -374,13 +376,17 @@ const DISHES = [
   {id:7, cat:'peranakan', emoji:'🥘', img:WM+'Buahkeluak.JPG', name:'Ayam buah keluak', stall:"Nyonya Kitchen", desc:'Chicken stewed with black nut, tamarind, spices.', price:9.50},
   {id:8, cat:'peranakan', emoji:'🥗', img:WM+'Fruit_Rojak.jpg', name:'Rojak', stall:"Fruit & Prawn Paste Corner", desc:'Fruit, cucumber, tau pok, thick prawn paste dressing.', price:4.00},
   {id:9, cat:'malay', emoji:'🍛', img:WM+'Nasi_lemak_on_banana_leaf.jpg', name:'Nasi lemak', stall:"Auntie Timah's", desc:'Coconut rice, ikan bilis, egg, sambal, fried chicken.', price:4.50},
-  {id:10, cat:'malay', emoji:'🍢', img:WM+'LauPaSat_Satay.JPG', name:'Satay (10pc)', stall:"Lorong Satay Club", desc:'Chicken and beef skewers, peanut sauce, ketupat.', price:8.00},
+  {id:10, cat:'malay', emoji:'🍢', img:WM+'Satay_with_Nasi_Impit.jpg', name:'Satay (10pc)', stall:"Lorong Satay Club", desc:'Chicken and beef skewers, peanut sauce, ketupat.', price:8.00},
   {id:11, cat:'malay', emoji:'🍜', img:WM+'Mie_Rebus_Medan.jpg', name:'Mee rebus', stall:"Geylang Serai Stall", desc:'Yellow noodles, thick sweet potato gravy, egg.', price:5.00},
   {id:12, cat:'malay', emoji:'🍚', img:WM+'Nasi_Padang_With_beef_rendang.jpg', name:'Nasi padang', stall:"Minang Corner", desc:'Rendang, sambal goreng, fried egg, steamed rice.', price:6.50},
   {id:13, cat:'indian', emoji:'🫓', img:WM+'Roti_Prata_Curry_Large.JPG', name:'Roti prata (2pc)', stall:"Springleaf Prata Place", desc:'Crispy flatbread, curry dip, kick of ghee.', price:3.00},
   {id:14, cat:'indian', emoji:'🍚', img:WM+'Chicken_Biryani.jpg', name:'Chicken biryani', stall:"Tekka Biryani House", desc:'Basmati rice, spiced chicken, raita, papadum.', price:7.50},
-  {id:15, cat:'kopitiam', emoji:'🍞', img:WM+'Ya_Kun_Kaya_Toast.JPG', name:'Kaya toast set', stall:"Ya Kun Corner", desc:'Charcoal toast, kaya, butter, two soft-boiled eggs.', price:4.20},
+  {id:15, cat:'kopitiam', emoji:'🍞', img:WM+'Kaya_toast_dip_into_soft_boiled_egg.jpg', name:'Kaya toast set', stall:"Ya Kun Corner", desc:'Charcoal toast, kaya, butter, two soft-boiled eggs.', price:4.20},
   {id:16, cat:'kopitiam', emoji:'🍧', img:WM+'Ais_kacang.jpg', name:'Ice kacang', stall:"Sweet Sweet Dessert Bar", desc:'Shaved ice, red beans, attap chee, gula melaka.', price:3.50},
+  {id:17, cat:'malay', emoji:'🥟', img:WM+'Bite_of_Curry_Puff.jpg', name:'Curry puff', stall:"Old Chang's Snack Corner", desc:'Flaky pastry, curried chicken and potato filling.', price:1.50},
+  {id:18, cat:'chinese', emoji:'🍖', img:WM+'Bak_Kut_Teh,_Five_Spice_Beef,_Grilled_Pork_Chops_(28851678).jpg', name:'Bak kut teh', stall:"Klang Herbal Pork Ribs", desc:'Peppery pork rib soup, garlic, herbs, youtiao on the side.', price:7.00},
+  {id:19, cat:'chinese', emoji:'🌯', img:WM+'YosriPopiaGoreng.jpg', name:'Popiah', stall:"Teochew Roll Corner", desc:'Fresh spring roll, turnip, egg, peanut, sweet sauce.', price:3.50},
+  {id:20, cat:'indian', emoji:'🐟', img:WM+'Fish_head_curry_peranakan_z.JPG', name:'Fish head curry', stall:"Banana Leaf Corner", desc:'Red snapper head simmered in tangy, spiced curry gravy.', price:14.00},
 ];
 const CATS = [
   {key:'all', label:'All stalls'},{key:'chinese', label:'Chinese'},{key:'malay', label:'Malay'},
