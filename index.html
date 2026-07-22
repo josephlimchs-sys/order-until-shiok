@@ -72,6 +72,17 @@
   .tab.active{background:var(--teal);color:var(--enamel);border-color:var(--teal);}
 
   .menu-grid{max-width:1100px;margin:0 auto;padding:0 24px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;}
+  .trending-row{max-width:1100px;margin:0 auto;padding:0 24px 34px;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+  .trending-row::-webkit-scrollbar{height:6px;}
+  .trending-row::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px;}
+  .trend-card{flex:0 0 auto;width:160px;scroll-snap-align:start;background:var(--enamel);border:1.5px solid var(--line);border-radius:14px;padding:10px;cursor:pointer;position:relative;transition:transform 0.15s;}
+  .trend-card:hover{transform:translateY(-2px);border-color:var(--teal);}
+  .trend-rank{position:absolute;top:6px;left:6px;background:var(--red);color:#fff;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:11px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.2);z-index:2;}
+  .trend-photo{width:100%;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:var(--cream);margin-bottom:8px;}
+  .trend-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .trend-name{font-family:'Baloo 2', sans-serif;font-size:13.5px;line-height:1.2;margin:0 0 3px;}
+  .trend-meta{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#8a8074;}
+  .trend-meta b{font-family:'Space Mono', monospace;color:var(--teal-dark);font-size:12.5px;}
   .dish-card{background:var(--enamel);border:1.5px solid var(--line);border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;gap:8px;}
   .dish-photo{width:100%;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--cream);position:relative;}
   .dish-photo img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -87,6 +98,9 @@
   .dish-top{display:flex;justify-content:space-between;align-items:flex-start;}
   .dish-tag{font-size:10.5px;font-weight:600;color:var(--teal-dark);background:#DCEDE9;padding:3px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:0.03em;}
   .dish-name{font-family:'Baloo 2', sans-serif;font-size:18px;margin:2px 0 0;}
+  .dish-rating{display:flex;align-items:center;gap:4px;font-size:12px;color:#8a8074;margin:2px 0 0;}
+  .dish-rating .stars{color:var(--turmeric);letter-spacing:1px;}
+  .dish-rating b{color:var(--ink);font-family:'Space Mono', monospace;font-weight:700;}
   .dish-stall{font-size:12.5px;color:#8a8074;margin:0;}
   .dish-desc{font-size:13px;color:#5b5448;line-height:1.4;margin:2px 0 6px;flex-grow:1;}
   .dish-bottom{display:flex;align-items:center;justify-content:space-between;}
@@ -245,7 +259,7 @@
     <div class="hero-stats">
       <div><b id="statOrders">0</b>orders "delivered"</div>
       <div><b>$0.00</b>spent, forever</div>
-      <div><b>40</b>stalls open now</div>
+      <div><b>41</b>stalls open now</div>
     </div>
   </div>
   <div class="hero-visual">
@@ -263,10 +277,17 @@
   <div class="perk"><div class="icon">🧾</div><h3>Zero-dollar chit</h3><p>Your total climbs like the real thing. Your bank account doesn't move an inch.</p></div>
 </div>
 
+<div class="section" id="trending-section">
+  <span class="section-label">🔥 hot right now</span>
+  <h2>Trending Now</h2>
+  <p class="sub">What everyone's ordering (and nobody's paying for) this minute.</p>
+</div>
+<div class="trending-row" id="trendingRow"></div>
+
 <div class="section" id="menu-section">
   <span class="section-label">step 01 · the (free) menu</span>
   <h2>The hawker centre 🏮</h2>
-  <p class="sub">Forty dishes, six cuisines — ribeye steak now joins the legendary ATAS tier. Prices update live and mean nothing.</p>
+  <p class="sub">Forty-one dishes, six cuisines — shabu shabu now joins the legendary ATAS tier. Prices update live and mean nothing.</p>
   <div class="tabs" id="tabs"></div>
 </div>
 <div class="menu-grid" id="menuGrid"></div>
@@ -369,14 +390,14 @@ const DISHES = [
   {id:1, cat:'chinese', emoji:'🍗', img:'images/hainanese_chicken_rice.jpeg', name:'Hainanese chicken rice', stall:"Tian Tian's Stall", desc:'Poached chicken, fragrant rice, chilli-ginger sauce.', price:4.50},
   {id:2, cat:'chinese', emoji:'🍜', img:'images/char_kway_teow.jpg', name:'Char kway teow', stall:"Wok Hei Corner", desc:'Flat rice noodles, cockles, lap cheong, dark soy.', price:5.00},
   {id:3, cat:'chinese', emoji:'🍲', img:'images/bak_chor_mee.jpg', name:'Bak chor mee', stall:"Ah Kow Noodle House", desc:'Minced pork noodles, vinegar, chilli, pork lard.', price:4.80},
-  {id:4, cat:'chinese', emoji:'🦐', img:WM+'Singapore_style_Hokkien_mee.jpg', name:'Hokkien mee', stall:"Geylang Prawn Mee", desc:'Prawn stock noodles, squid, pork belly.', price:5.50},
+  {id:4, cat:'chinese', emoji:'🦐', img:'images/hokkien_mee.jpg', name:'Hokkien mee', stall:"Geylang Prawn Mee", desc:'Prawn stock noodles, squid, pork belly.', price:5.50},
   {id:5, cat:'chinese', emoji:'🦀', img:'images/chilli_crab.jpg', name:'Chilli crab', stall:"East Coast Seafood", desc:'Whole crab, tomato-chilli gravy, fried mantou.', price:38.00, extraOpts:[["Mantou (fried bun)",[["No mantou",0],["4pc mantou",2.00],["8pc mantou",3.80],["12pc mantou",5.50]],1]]},
   {id:6, cat:'peranakan', emoji:'🍲', img:'images/laksa.jpg', name:'Laksa', stall:"Katong Laksa House", desc:'Coconut curry noodles, prawns, fish cake, laksa leaf.', price:6.00},
   {id:7, cat:'peranakan', emoji:'🥘', img:'images/ayam_buah_keluak.jpg', name:'Ayam buah keluak', stall:"Nyonya Kitchen", desc:'Chicken stewed with black nut, tamarind, spices.', price:9.50},
   {id:8, cat:'peranakan', emoji:'🥗', img:'images/rojak.jpg', name:'Rojak', stall:"Fruit & Prawn Paste Corner", desc:'Fruit, cucumber, tau pok, thick prawn paste dressing.', price:4.00},
   {id:9, cat:'malay', emoji:'🍛', img:'images/nasi_lemak.jpeg', name:'Nasi lemak', stall:"Auntie Timah's", desc:'Coconut rice, ikan bilis, egg, sambal, fried chicken.', price:4.50},
   {id:10, cat:'malay', emoji:'🍢', img:WM+'Satay_with_Nasi_Impit.jpg', name:'Satay (10pc)', stall:"Lorong Satay Club", desc:'Chicken and beef skewers, peanut sauce, ketupat.', price:8.00},
-  {id:11, cat:'malay', emoji:'🍜', img:WM+'Mie_Rebus_Medan.jpg', name:'Mee rebus', stall:"Geylang Serai Stall", desc:'Yellow noodles, thick sweet potato gravy, egg.', price:5.00},
+  {id:11, cat:'malay', emoji:'🍜', img:'images/mee_rebus.jpg', name:'Mee rebus', stall:"Geylang Serai Stall", desc:'Yellow noodles, thick sweet potato gravy, egg.', price:5.00},
   {id:12, cat:'malay', emoji:'🍚', img:'images/nasi_padang.jpg', name:'Nasi padang', stall:"Minang Corner", desc:'Rendang, sambal goreng, fried egg, steamed rice.', price:6.50},
   {id:13, cat:'indian', emoji:'🫓', img:'images/roti_prata.jpeg', name:'Roti prata (2pc)', stall:"Springleaf Prata Place", desc:'Crispy flatbread, curry dip, kick of ghee.', price:3.00},
   {id:14, cat:'indian', emoji:'🍚', img:WM+'Chicken_Biryani.jpg', name:'Chicken biryani', stall:"Tekka Biryani House", desc:'Basmati rice, spiced chicken, raita, papadum.', price:7.50},
@@ -406,6 +427,7 @@ const DISHES = [
   {id:38, cat:'premium', emoji:'🌶️', img:'images/mala_steamboat.jpg', name:'Mala Steamboat with Abalone', stall:"The Chef's Table", desc:'Numbing-spicy Sichuan broth, whole abalone, seafood and mushrooms, tableside.', price:88.00},
   {id:39, cat:'premium', emoji:'🦞', img:US('1707995546408-9815c70dd5c4'), name:'Lobster Bliss', stall:"The Chef's Table", desc:'Whole lobster, garlic butter, cheese gratin, herb crust, char-grilled.', price:118.00},
   {id:40, cat:'premium', emoji:'🥩', img:'images/ribeye_steak.jpg', name:'Ribeye Steak', stall:"The Chef's Table", desc:'Pan-seared prime ribeye, rosemary butter baste, cracked pepper crust.', price:68.00},
+  {id:41, cat:'premium', emoji:'🍲', img:'images/shabu_shabu.jpg', name:'Shabu Shabu', stall:"Edomae Sushi Bar", desc:'Thin-sliced wagyu, tofu, mushrooms and greens, swished in kombu dashi.', price:58.00},
 ];
 const CATS = [
   {key:'all', label:'All stalls'},{key:'premium', label:'💎 ATAS'},
@@ -425,6 +447,13 @@ let activeCat = 'all';
 let cart = {}; // key -> {dishId, opts:[i,i,i], qty}
 
 function money(n){ return '$'+n.toFixed(2); }
+// deterministic "rating" per dish so it looks real but never changes on refresh
+function dishRating(d){
+  const h = _hash('rating|'+d.id);
+  const stars = (4.3 + (h%8)/10).toFixed(1); // 4.3 - 5.0
+  const reviews = 80 + (h%920); // 80 - 999
+  return {stars, reviews};
+}
 
 function renderTabs(){
   document.getElementById('tabs').innerHTML = CATS.map(c =>
@@ -439,7 +468,7 @@ function renderMenu(){
     <div class="dish-card ${d.cat==='premium'?'premium':''}">
       <div class="dish-photo">${d.cat==='premium'?'<span class="premium-badge">✨ RARE</span>':''}<img src="${d.img}" alt="${d.name}" loading="lazy" onerror="this.parentElement.outerHTML='<div class=&quot;dish-emoji&quot;>${d.emoji}</div>'"></div>
       <div class="dish-top" style="margin-top:2px;"><div></div><div class="dish-tag">${d.cat}</div></div>
-      <div><p class="dish-name">${d.name}</p></div>
+      <div><p class="dish-name">${d.name}</p><p class="dish-rating"><span class="stars">${'★'.repeat(Math.round(dishRating(d).stars))}${'☆'.repeat(5-Math.round(dishRating(d).stars))}</span><b>${dishRating(d).stars}</b>(${dishRating(d).reviews})</p></div>
       <p class="dish-desc">${d.desc}</p>
       <div class="dish-bottom">
         <div><span class="dish-old-price">$${(d.price*2).toFixed(2)}</span><span class="dish-price">$${d.price.toFixed(2)}</span></div>
@@ -468,6 +497,7 @@ function renderCustomize(d){
     <button class="modal-close" onclick="closeCustomize()">✕</button>
     <div class="cust-photo"><img src="${d.img}" alt="${d.name}" onerror="this.parentElement.style.display='none'"></div>
     <p class="cust-name" style="text-align:center;">${d.name}</p>
+    <p class="dish-rating" style="justify-content:center;margin-bottom:8px;"><span class="stars">${'★'.repeat(Math.round(dishRating(d).stars))}${'☆'.repeat(5-Math.round(dishRating(d).stars))}</span><b>${dishRating(d).stars}</b>(${dishRating(d).reviews})</p>
     <p class="sub" style="text-align:center;">${d.desc}</p>
     ${groups.map((g,gi)=>`
       <div class="cust-group">
@@ -881,8 +911,27 @@ function resumeLiveOrder(){
   if(o){ startTracking(o); document.getElementById('trackerOverlay').classList.add('open'); }
 }
 
+// ---------- trending now ----------
+function renderTrending(){
+  const row = document.getElementById('trendingRow');
+  if(!row) return;
+  const top = DISHES.slice()
+    .sort((a,b)=> dishRating(b).stars - dishRating(a).stars || dishRating(b).reviews - dishRating(a).reviews)
+    .slice(0,8);
+  row.innerHTML = top.map((d,i)=>{
+    const r = dishRating(d);
+    return `<div class="trend-card" onclick="openCustomize(${d.id})">
+      <span class="trend-rank">${i+1}</span>
+      <div class="trend-photo"><img src="${d.img}" alt="${d.name}" loading="lazy" onerror="this.parentElement.outerHTML='<div class=&quot;dish-emoji&quot;>${d.emoji}</div>'"></div>
+      <p class="trend-name">${d.name}</p>
+      <div class="trend-meta"><span>★ ${r.stars}</span><b>${money(d.price)}</b></div>
+    </div>`;
+  }).join('');
+}
+
 renderTabs();
 renderMenu();
+renderTrending();
 updateCartUI();
 initStreak();
 refreshOrdersStat();
