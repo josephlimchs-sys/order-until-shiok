@@ -9,13 +9,13 @@ Static site — a single `index.html`, no build step, no dependencies.
 ## Deploy to Vercel
 
 ### Option A — GitHub + Vercel (recommended, matches your usual flow)
-1. Create a new repo on GitHub (e.g. `makan-never-comes`) and push this folder:
+1. Create a new repo on GitHub (e.g. `order-until-shiok`) and push this folder:
    ```
    git init
    git add .
    git commit -m "Initial commit"
    git branch -M main
-   git remote add origin https://github.com/<your-username>/makan-never-comes.git
+   git remote add origin https://github.com/<your-username>/order-until-shiok.git
    git push -u origin main
    ```
 2. Go to https://vercel.com/new, import the GitHub repo.
@@ -25,7 +25,7 @@ Static site — a single `index.html`, no build step, no dependencies.
 ### Option B — Vercel CLI, no GitHub needed
 ```
 npm i -g vercel
-cd makan-never-comes
+cd order-until-shiok
 vercel
 ```
 Follow the prompts (link or create a project) and it deploys straight from your
