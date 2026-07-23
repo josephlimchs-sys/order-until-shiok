@@ -87,6 +87,7 @@
   .dish-photo{width:100%;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--cream);position:relative;}
   .dish-photo img{width:100%;height:100%;object-fit:cover;display:block;}
   .premium-badge{position:absolute;top:8px;left:8px;background:linear-gradient(135deg,#E3A73D,#B8791F);color:#fff;font-family:'Baloo 2', sans-serif;font-weight:700;font-size:10.5px;padding:4px 10px;border-radius:999px;box-shadow:0 2px 6px rgba(0,0,0,0.25);letter-spacing:0.02em;}
+  .halal-badge{position:absolute;top:8px;right:8px;background:#2E7D5B;color:#fff;font-family:'Baloo 2', sans-serif;font-weight:700;font-size:10px;padding:4px 9px;border-radius:999px;box-shadow:0 2px 6px rgba(0,0,0,0.25);letter-spacing:0.02em;display:flex;align-items:center;gap:3px;}
   .dish-card.premium{border-color:#E3A73D;border-width:2px;background:linear-gradient(180deg,#FFFBF2,var(--enamel));}
   .dish-emoji{font-size:42px;}
   .thumb{width:38px;height:38px;border-radius:8px;overflow:hidden;flex:0 0 auto;background:var(--cream);}
@@ -403,7 +404,7 @@ const DISHES = [
   {id:7, cat:'peranakan', emoji:'🥘', img:'images/ayam_buah_keluak.jpg', name:'Ayam buah keluak', stall:"Nyonya Kitchen", desc:'Chicken stewed with black nut, tamarind, spices.', price:9.50},
   {id:8, cat:'peranakan', emoji:'🥗', img:'images/rojak.jpg', name:'Rojak', stall:"Fruit & Prawn Paste Corner", desc:'Fruit, cucumber, tau pok, thick prawn paste dressing.', price:4.00},
   {id:9, cat:'malay', emoji:'🍛', img:'images/nasi_lemak.jpeg', name:'Nasi lemak', stall:"Auntie Timah's", desc:'Coconut rice, ikan bilis, egg, sambal, fried chicken.', price:4.50},
-  {id:10, cat:'malay', emoji:'🍢', img:WM+'Satay_with_Nasi_Impit.jpg', name:'Satay (10pc)', stall:"Lorong Satay Club", desc:'Chicken and beef skewers, peanut sauce, ketupat.', price:8.00},
+  {id:10, cat:'malay', emoji:'🍢', img:WM+'Satay_with_Nasi_Impit.jpg', name:'Satay (10pc)', stall:"Lorong Satay Club", desc:'Chicken and beef skewers, peanut sauce, ketupat.', price:8.00, addonOverride:[["Regular ketupat",0],["Extra ketupat (4pc)",1.20],["Extra ketupat (8pc)",2.20]]},
   {id:11, cat:'malay', emoji:'🍜', img:'images/mee_rebus.jpg', name:'Mee rebus', stall:"Geylang Serai Stall", desc:'Yellow noodles, thick sweet potato gravy, egg.', price:5.00},
   {id:12, cat:'malay', emoji:'🍚', img:'images/nasi_padang.jpg', name:'Nasi padang', stall:"Minang Corner", desc:'Rendang, sambal goreng, fried egg, steamed rice.', price:6.50},
   {id:13, cat:'indian', emoji:'🫓', img:'images/roti_prata.jpeg', name:'Roti prata (2pc)', stall:"Springleaf Prata Place", desc:'Crispy flatbread, curry dip, kick of ghee.', price:3.00},
@@ -449,7 +450,10 @@ const OPT_GROUPS = [
   ["Add-on",[["None",0],["Extra egg",0.80],["Extra meat",1.80]],0],
 ];
 // returns the full set of customisation groups for a dish, including any dish-specific extras (e.g. mantou for chilli crab)
-function getGroups(d){ return d.extraOpts ? OPT_GROUPS.concat(d.extraOpts) : OPT_GROUPS; }
+function getGroups(d){
+  let groups = d.addonOverride ? OPT_GROUPS.map((g,i)=> i===2 ? ["Add-on", d.addonOverride, 0] : g) : OPT_GROUPS;
+  return d.extraOpts ? groups.concat(d.extraOpts) : groups;
+}
 
 let activeCat = 'all';
 let cart = {}; // key -> {dishId, opts:[i,i,i], qty}
@@ -471,7 +475,7 @@ function setCat(key){ activeCat=key; renderTabs(); renderMenu(); }
 
 function dishCardHTML(d){
   return `<div class="dish-card ${d.cat==='premium'?'premium':''}">
-      <div class="dish-photo">${d.cat==='premium'?'<span class="premium-badge">✨ RARE</span>':''}<img src="${d.img}" alt="${d.name}" loading="lazy" onerror="this.parentElement.outerHTML='<div class=&quot;dish-emoji&quot;>${d.emoji}</div>'"></div>
+      <div class="dish-photo">${d.cat==='premium'?'<span class="premium-badge">✨ RARE</span>':''}${(d.cat==='malay'||d.cat==='indian')?'<span class="halal-badge">☪ HALAL</span>':''}<img src="${d.img}" alt="${d.name}" loading="lazy" onerror="this.parentElement.outerHTML='<div class=&quot;dish-emoji&quot;>${d.emoji}</div>'"></div>
       <div class="dish-top" style="margin-top:2px;"><div></div><div class="dish-tag">${d.cat}</div></div>
       <div><p class="dish-name">${d.name}</p><p class="dish-rating"><span class="stars">${'★'.repeat(Math.round(dishRating(d).stars))}${'☆'.repeat(5-Math.round(dishRating(d).stars))}</span><b>${dishRating(d).stars}</b>(${dishRating(d).reviews})</p></div>
       <p class="dish-desc">${d.desc}</p>
@@ -513,7 +517,7 @@ function renderCustomize(d){
   document.getElementById('custModal').innerHTML = `
     <button class="modal-close" onclick="closeCustomize()">✕</button>
     <div class="cust-photo"><img src="${d.img}" alt="${d.name}" onerror="this.parentElement.style.display='none'"></div>
-    <p class="cust-name" style="text-align:center;">${d.name}</p>
+    <p class="cust-name" style="text-align:center;">${d.name}${(d.cat==='malay'||d.cat==='indian')?' <span class="halal-badge" style="position:static;display:inline-flex;vertical-align:middle;">☪ HALAL</span>':''}</p>
     <p class="dish-rating" style="justify-content:center;margin-bottom:8px;"><span class="stars">${'★'.repeat(Math.round(dishRating(d).stars))}${'☆'.repeat(5-Math.round(dishRating(d).stars))}</span><b>${dishRating(d).stars}</b>(${dishRating(d).reviews})</p>
     <p class="sub" style="text-align:center;">${d.desc}</p>
     ${groups.map((g,gi)=>`
