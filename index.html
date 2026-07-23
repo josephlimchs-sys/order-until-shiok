@@ -23,7 +23,7 @@
   .topbar{position:sticky;top:0;z-index:50;background:var(--teal);color:var(--enamel);border-bottom:3px solid var(--turmeric);}
   .topbar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;gap:12px;}
   .brand{display:flex;align-items:center;gap:10px;font-family:'Baloo 2', sans-serif;font-weight:700;font-size:22px;}
-  .brand-logo{height:34px;width:auto;display:block;}
+  .brand-logo{height:60px;width:auto;display:block;}
   .brand .badge{background:var(--turmeric);color:var(--teal-dark);border-radius:8px;padding:4px 8px;font-size:11.5px;font-family:'Work Sans', sans-serif;font-weight:600;}
   .topbar-right{display:flex;align-items:center;gap:14px;font-size:13.5px;}
   .cart-btn{display:flex;align-items:center;gap:8px;background:var(--enamel);color:var(--teal-dark);border:none;border-radius:999px;padding:9px 16px;font-weight:600;font-size:14px;cursor:pointer;font-family:'Work Sans', sans-serif;}
@@ -158,7 +158,8 @@
   .how-step h3{margin:8px 0 6px;font-size:17px;} .how-step p{margin:0;font-size:14px;color:#cfe4e0;line-height:1.5;}
 
   footer{text-align:center;padding:40px 24px 50px;color:#8a8074;font-size:14px;}
-  footer .brand-mini{font-family:'Baloo 2', sans-serif;color:var(--teal-dark);font-weight:700;font-size:18px;margin-bottom:8px;}
+  footer .brand-mini{font-family:'Baloo 2', sans-serif;color:var(--teal-dark);font-weight:700;font-size:18px;margin-bottom:8px;display:flex;justify-content:center;}
+  footer .brand-mini img{height:48px;width:auto;display:block;}
   .teh-o-btn{display:inline-flex;align-items:center;gap:9px;background:var(--teal);color:var(--enamel);border:none;border-radius:999px;padding:12px 22px;font-weight:700;font-size:14px;cursor:pointer;font-family:'Baloo 2', sans-serif;margin-top:14px;}
   .teh-o-btn:hover{background:var(--teal-dark);}
   .teh-o-btn .glass{font-size:18px;}
@@ -431,7 +432,7 @@
 </div>
 
 <footer>
-  <div class="brand-mini">🍜 Order Until Shiok</div>
+  <div class="brand-mini"><img src="images/logo_color.png" alt="Order Until Shiok"></div>
   <p>All the dopamine of ordering supper, none of the spending. No real food, no real payment, no real GST.</p>
   <button class="teh-o-btn" onclick="openTehO()"><span class="glass">🍵</span> Buy me a teh-o</button>
 </footer>
