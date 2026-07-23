@@ -111,15 +111,32 @@
   .add-btn:hover{background:var(--red);}
 
   .how-wrap{background:var(--teal-dark);color:var(--enamel);padding:56px 0;margin-top:20px;}
+  /* ---- Testimonial carousel ---- */
+  .testi-wrap{max-width:760px;margin:0 auto;padding:56px 24px 20px;text-align:center;}
+  .testi-track{position:relative;min-height:210px;}
+  .testi-card{position:absolute;inset:0;background:var(--enamel);border:1.5px solid var(--line);border-radius:18px;padding:28px 30px;opacity:0;transform:translateX(16px);transition:opacity 0.4s, transform 0.4s;pointer-events:none;}
+  .testi-card.active{opacity:1;transform:translateX(0);pointer-events:auto;position:relative;}
+  .testi-stars{color:var(--turmeric);font-size:15px;letter-spacing:2px;margin-bottom:10px;}
+  .testi-quote{font-size:15.5px;line-height:1.6;color:var(--ink);font-style:italic;margin:0 0 14px;}
+  .testi-person{display:flex;align-items:center;justify-content:center;gap:10px;}
+  .testi-avatar{width:34px;height:34px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:17px;}
+  .testi-name{font-family:'Baloo 2', sans-serif;font-weight:700;font-size:13.5px;color:var(--teal-dark);}
+  .testi-role{font-size:11.5px;color:#8a8074;}
+  .testi-dots{display:flex;justify-content:center;gap:7px;margin-top:16px;}
+  .testi-dot{width:8px;height:8px;border-radius:50%;background:var(--line);border:none;cursor:pointer;padding:0;}
+  .testi-dot.on{background:var(--red);width:20px;border-radius:4px;transition:width 0.2s;}
+  .testi-arrow{position:absolute;top:50%;transform:translateY(-50%);background:var(--enamel);border:1.5px solid var(--line);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:14px;color:var(--teal-dark);box-shadow:0 3px 8px rgba(0,0,0,0.1);}
+  .testi-arrow.prev{left:-6px;} .testi-arrow.next{right:-6px;}
+  @media (max-width:560px){ .testi-arrow{display:none;} }
   /* ---- About section ---- */
   .about-wrap{max-width:900px;margin:0 auto;padding:56px 24px;text-align:center;}
   .about-wrap h2{font-size:32px;color:var(--teal-dark);margin:8px 0 16px;}
   .about-wrap p.lead{font-size:16px;line-height:1.7;color:#4A443C;max-width:640px;margin:0 auto 30px;}
   .about-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px;text-align:left;}
   .about-card{background:var(--enamel);border:1.5px solid var(--line);border-radius:14px;padding:18px;}
-  .about-card .icon{font-size:24px;margin-bottom:8px;}
-  .about-card h3{font-family:'Baloo 2', sans-serif;font-size:15px;margin:0 0 6px;color:var(--teal-dark);}
-  .about-card p{font-size:13px;color:#5b5448;line-height:1.5;margin:0;}
+  .about-card .icon{font-size:22px;line-height:1;margin-bottom:6px;display:block;}
+  .about-card h3{font-family:'Baloo 2', sans-serif;font-size:15px;margin:0 0 5px;color:var(--teal-dark);line-height:1.2;}
+  .about-card p{font-size:13px;color:#5b5448;line-height:1.45;margin:0;}
   /* ---- FAQ section ---- */
   .faq-wrap{background:var(--enamel);padding:10px 0 60px;}
   .faq-list{max-width:760px;margin:0 auto;padding:0 24px;}
@@ -335,6 +352,16 @@
   </div>
 </div>
 
+<div class="testi-wrap">
+  <span class="section-label">what people are saying</span>
+  <h2 style="font-size:28px;color:var(--teal-dark);margin:8px 0 24px;">Real reviews of a fake kitchen</h2>
+  <div class="testi-track" id="testiTrack" style="position:relative;">
+    <button class="testi-arrow prev" onclick="testiNav(-1)" aria-label="Previous">‹</button>
+    <button class="testi-arrow next" onclick="testiNav(1)" aria-label="Next">›</button>
+  </div>
+  <div class="testi-dots" id="testiDots"></div>
+</div>
+
 <div class="about-wrap" id="about-section">
   <span class="section-label">🧠 about a dopamine site</span>
   <h2>Order Until Shiok — and that's the point.</h2>
@@ -343,7 +370,7 @@
     <div class="about-card"><div class="icon">🌙</div><h3>Late-night cravings</h3><p>Hungry at midnight but don't actually want to blow $30 on delivery? Order it here, get the buzz, sleep happy.</p></div>
     <div class="about-card"><div class="icon">💸</div><h3>A no-spend ritual</h3><p>Satisfy the "add to cart and check out" urge without the bill or the regret — great for a no-spend month.</p></div>
     <div class="about-card"><div class="icon">🧠</div><h3>A quick mood lift</h3><p>A tiny, low-stakes reward when you need one — calmer than doomscrolling, cheaper than actual shopping.</p></div>
-    <div class="about-card"><div class="icon">🏮</div><h3>Curious foodies</h3><p>Browse dozens of real hawker and ATAS dishes, customise every option, and "visit" every stall for free.</p></div>
+    <div class="about-card"><div class="icon">🍽️</div><h3>Curious foodies</h3><p>Browse dozens of real hawker and ATAS dishes, customise every option, and "visit" every stall for free.</p></div>
   </div>
 </div>
 
@@ -1026,6 +1053,42 @@ updateCartUI();
 initStreak();
 refreshOrdersStat();
 resumeLiveOrder();
+
+// ---------- testimonial carousel ----------
+const TESTIMONIALS = [
+  {stars:5, quote:"Ordered chilli crab at 1am, watched the rider cross my void deck, felt the dopamine, went to sleep. $0 spent. 10/10.", name:"Auntie Bee", role:"Void deck regular"},
+  {stars:5, quote:"I've collected 6 couriers including the lion dance one. My friends think I need help. I do not need help.", name:"Wei Jie", role:"Courier collector"},
+  {stars:4, quote:"Tried the ATAS tier just to see the lobster. Nearly ordered for real. Nearly.", name:"Priya", role:"Window shopper"},
+  {stars:5, quote:"My no-spend month is going great, largely because this site keeps me full without touching my wallet.", name:"Farah", role:"On a no-buy year"},
+  {stars:5, quote:"The mantou add-on for chilli crab is a genuinely underrated detail. Whoever built this understands hawker culture.", name:"Uncle Tan", role:"Retired, mostly at kopitiam"},
+  {stars:4, quote:"Streak day 14 and my kopi cat is obsessed with me. I don't know what that means but I'm not stopping.", name:"Xin Yi", role:"Daily visitor"},
+];
+let testiIndex=0, testiTimer=null;
+function renderTestiCards(){
+  const track = document.getElementById('testiTrack');
+  if(!track) return;
+  TESTIMONIALS.forEach((t,i)=>{
+    const card = document.createElement('div');
+    card.className = 'testi-card'+(i===0?' active':'');
+    card.innerHTML = `<div class="testi-stars">${'★'.repeat(t.stars)}${'☆'.repeat(5-t.stars)}</div>
+      <p class="testi-quote">"${t.quote}"</p>
+      <div class="testi-person"><span class="testi-avatar">🧑</span><div style="text-align:left;"><div class="testi-name">${t.name}</div><div class="testi-role">${t.role}</div></div></div>`;
+    track.appendChild(card);
+  });
+  const dots = document.getElementById('testiDots');
+  dots.innerHTML = TESTIMONIALS.map((_,i)=>`<button class="testi-dot${i===0?' on':''}" onclick="testiGoTo(${i})" aria-label="Slide ${i+1}"></button>`).join('');
+}
+function testiShow(i){
+  testiIndex = (i+TESTIMONIALS.length)%TESTIMONIALS.length;
+  document.querySelectorAll('.testi-card').forEach((c,ci)=>c.classList.toggle('active', ci===testiIndex));
+  document.querySelectorAll('.testi-dot').forEach((d,di)=>d.classList.toggle('on', di===testiIndex));
+}
+function testiNav(delta){ testiShow(testiIndex+delta); testiRestart(); }
+function testiGoTo(i){ testiShow(i); testiRestart(); }
+function testiRestart(){ if(testiTimer) clearInterval(testiTimer); testiTimer=setInterval(()=>testiShow(testiIndex+1),5000); }
+renderTestiCards();
+testiRestart();
+
 
 // ---------- jump to top ----------
 (function(){
