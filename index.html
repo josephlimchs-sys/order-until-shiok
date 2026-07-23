@@ -301,7 +301,7 @@
     <div class="hero-stats">
       <div><b id="statOrders">0</b>orders "delivered"</div>
       <div><b>$0.00</b>spent, forever</div>
-      <div><b>48</b>stalls open now</div>
+      <div><b>64</b>stalls open now</div>
     </div>
   </div>
   <div class="hero-visual">
@@ -331,7 +331,7 @@
 <div class="section" id="menu-section">
   <span class="section-label">step 01 · the (free) menu</span>
   <h2>The hawker centre</h2>
-  <p class="sub">Thirty-one dishes, six cuisines. Prices update live and mean nothing.</p>
+  <p class="sub">Thirty-two dishes, six cuisines. Prices update live and mean nothing.</p>
   <div class="tabs" id="tabs"></div>
 </div>
 <div class="menu-grid" id="menuGrid"></div>
@@ -339,9 +339,16 @@
 <div class="section" id="restaurant-section">
   <span class="section-label">💎 For the ATAS</span>
   <h2>The Restaurant</h2>
-  <p class="sub">Seventeen dishes, zero restraint — the ATAS tier gets its own dining room. Still free. Still fake.</p>
+  <p class="sub">Twenty dishes, zero restraint — the ATAS tier gets its own dining room. Still free. Still fake.</p>
 </div>
 <div class="menu-grid" id="restaurantGrid"></div>
+
+<div class="section" id="drinks-section">
+  <span class="section-label">🥤 stay hydrated (or don't)</span>
+  <h2>The Drink Store</h2>
+  <p class="sub">Twelve drinks, zero calories charged to your wallet. Kopi however you like it.</p>
+</div>
+<div class="menu-grid" id="drinksGrid"></div>
 
 <div class="how-wrap" id="how-section">
   <div class="how-inner">
@@ -542,6 +549,22 @@ const DISHES = [
   {id:46, cat:'western', emoji:'🍽️', img:'images/chicken_cutlet.jpg', name:'Chicken Cutlet', stall:"Western Grill Corner", desc:'Breaded fried chicken fillet, fries, ketchup, side salad.', price:6.50, hideGroups:[0], addonLabel:'Sauce', addonOverride:[["Black pepper sauce",0],["Mushroom sauce",0],["Curry sauce",0]]},
   {id:47, cat:'western', emoji:'🐟', img:US('1722105344016-0df8537c1799'), name:'Fish and Chips', stall:"Western Grill Corner", desc:'Beer-battered fish fillet, crispy fries, tartar sauce.', price:8.00, hideGroups:[0], addonOverride:[["None",0],["Extra fries",1.50],["Extra tartar sauce",0.50]]},
   {id:48, cat:'premium', emoji:'🍚', img:US('1741295017668-c8132acd6fc0'), name:'Bibimbap', stall:"Seoul Kitchen", desc:'Stone-pot rice, seasoned vegetables, gochujang, fried egg.', price:26.00, addonOverride:[["None",0],["Extra egg",0.80],["Extra beef bulgogi",3.00]]},
+  {id:49, cat:'chinese', emoji:'🦪', img:WM+'Oyster_omelette_-_Singapore_style.JPG', name:'Oyster Omelette', stall:"Wok Hei Corner", desc:'Crispy-edged egg omelette, plump oysters, savory starch gravy.', price:6.00, addonOverride:[["None",0],["Extra oysters",3.00],["Extra egg",0.80]]},
+  {id:50, cat:'premium', emoji:'🥩', img:US('1746211224472-2f122b686885'), name:'Beef Wellington', stall:"The Chef's Table", desc:'Prime beef tenderloin, mushroom duxelles, golden puff pastry.', price:88.00, hideGroups:[0,2]},
+  {id:51, cat:'premium', emoji:'🍖', img:US('1761983723667-99c7fd98af53'), name:'Herb-Crusted Rack of Lamb', stall:"The Chef's Table", desc:'New Zealand lamb rack, herb crust, roasted root vegetables.', price:68.00, hideGroups:[0,2]},
+  {id:52, cat:'premium', emoji:'🐟', img:US('1519708227418-c8fd9a32b7a2'), name:'Grilled Norwegian Salmon', stall:"The Chef's Table", desc:'Pan-seared salmon fillet, seasonal greens, lemon butter sauce.', price:36.00, hideGroups:[0,2]},
+  {id:53, cat:'drinks', emoji:'☕', img:US('1559496417-e7f25cb247f3'), name:'Kopi', stall:"The Drink Store", desc:'Traditional black coffee with condensed milk, hot.', price:1.60, hideGroups:[0], addonLabel:'Sweetness', addonOverride:[["Normal sweetness",0],["Less sweet",0],["Extra sweet",0]]},
+  {id:54, cat:'drinks', emoji:'☕', img:US('1506372023823-741c83b836fe'), name:'Kopi-O', stall:"The Drink Store", desc:'Black coffee with sugar, no milk, hot.', price:1.40, hideGroups:[0], addonLabel:'Sweetness', addonOverride:[["Normal sweetness",0],["Less sweet",0],["Extra sweet",0]]},
+  {id:55, cat:'drinks', emoji:'☕', img:US('1497515114629-f71d768fd07c'), name:'Kopi-O Kosong', stall:"The Drink Store", desc:'Black coffee, no sugar, no milk, hot.', price:1.40, hideGroups:[0,2]},
+  {id:56, cat:'drinks', emoji:'☕', img:US('1509042239860-f550ce710b93'), name:'Kopi-C', stall:"The Drink Store", desc:'Coffee with evaporated milk, hot.', price:1.60, hideGroups:[0], addonLabel:'Sweetness', addonOverride:[["Normal sweetness",0],["Less sweet",0],["Extra sweet",0]]},
+  {id:57, cat:'drinks', emoji:'🧊', img:US('1461023058943-07fcbe16d735'), name:'Kopi Peng', stall:"The Drink Store", desc:'Iced version of traditional kopi with condensed milk.', price:2.00, hideGroups:[0], addonLabel:'Sweetness', addonOverride:[["Normal sweetness",0],["Less sweet",0],["Extra sweet",0]]},
+  {id:58, cat:'drinks', emoji:'🫖', img:US('1514432324607-a09d9b4aefdd'), name:'Teh Tarik', stall:"The Drink Store", desc:'Frothy pulled milk tea, hot.', price:1.80, hideGroups:[0], addonLabel:'Sweetness', addonOverride:[["Normal sweetness",0],["Less sweet",0],["Extra sweet",0]]},
+  {id:59, cat:'drinks', emoji:'🫖', img:US('1506619216599-9d16d0903dfd'), name:'Teh-O', stall:"The Drink Store", desc:'Black tea with sugar, no milk, hot.', price:1.40, hideGroups:[0], addonLabel:'Sweetness', addonOverride:[["Normal sweetness",0],["Less sweet",0],["Extra sweet",0]]},
+  {id:60, cat:'drinks', emoji:'🍫', img:US('1546334169-864ef455d3f8'), name:'Milo', stall:"The Drink Store", desc:'Classic malt chocolate drink, hot or cold.', price:2.20, hideGroups:[0], addonLabel:'Sweetness', addonOverride:[["Normal sweetness",0],["Less sweet",0],["Extra sweet",0]]},
+  {id:61, cat:'drinks', emoji:'🦕', img:US('1586195831800-24f14c992cea'), name:'Milo Dinosaur', stall:"The Drink Store", desc:'Iced Milo piled with a mountain of extra Milo powder on top.', price:3.20, hideGroups:[0], addonLabel:'Add-on', addonOverride:[["Normal powder",0],["Extra Milo powder",1.00]]},
+  {id:62, cat:'drinks', emoji:'☕', img:US('1512568400610-62da28bc8a13'), name:'Cappuccino', stall:"The Drink Store", desc:'Espresso, steamed milk, thick milk foam.', price:4.50, hideGroups:[0], addonLabel:'Add-on', addonOverride:[["None",0],["Extra shot",1.00],["Oat milk",0.80]]},
+  {id:63, cat:'drinks', emoji:'☕', img:US('1541167760496-1628856ab772'), name:'Latte', stall:"The Drink Store", desc:'Espresso with silky steamed milk.', price:4.80, hideGroups:[0], addonLabel:'Add-on', addonOverride:[["None",0],["Extra shot",1.00],["Oat milk",0.80],["Vanilla syrup",0.80]]},
+  {id:64, cat:'drinks', emoji:'🌸', img:US('1579954115545-a95591f28bfc'), name:'Bandung', stall:"The Drink Store", desc:'Rose syrup with milk, a Singapore classic pink drink.', price:2.00, hideGroups:[0,2]},
 ];
 const CATS = [
   {key:'all', label:'All stalls'},
@@ -594,7 +617,7 @@ function dishCardHTML(d){
 }
 function renderMenu(){
   const grid = document.getElementById('menuGrid');
-  const hawkerDishes = DISHES.filter(d=>d.cat!=='premium');
+  const hawkerDishes = DISHES.filter(d=>d.cat!=='premium' && d.cat!=='drinks');
   const list = activeCat==='all' ? hawkerDishes : hawkerDishes.filter(d=>d.cat===activeCat);
   grid.innerHTML = list.map(dishCardHTML).join('');
 }
@@ -602,6 +625,12 @@ function renderRestaurant(){
   const grid = document.getElementById('restaurantGrid');
   if(!grid) return;
   const list = DISHES.filter(d=>d.cat==='premium');
+  grid.innerHTML = list.map(dishCardHTML).join('');
+}
+function renderDrinks(){
+  const grid = document.getElementById('drinksGrid');
+  if(!grid) return;
+  const list = DISHES.filter(d=>d.cat==='drinks');
   grid.innerHTML = list.map(dishCardHTML).join('');
 }
 
@@ -877,7 +906,7 @@ function pay(){
   const order = {
     no: '#OTS'+(1000+Math.floor(Math.random()*9000)),
     total, items, done:false,
-    stallCat: catsOrdered.map(c=>{ const found = CATS.find(x=>x.key===c); return found ? found.label : 'ATAS'; }).join(', '),
+    stallCat: catsOrdered.map(c=>{ const found = CATS.find(x=>x.key===c); if(found) return found.label; return c==='drinks' ? 'Drinks' : 'ATAS'; }).join(', '),
     placedAt: Date.now(), durSecs: (2+Math.floor(Math.random()*3))*60,
     date: new Date().toLocaleDateString(undefined,{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}),
   };
@@ -1061,6 +1090,7 @@ function renderTrending(){
 renderTabs();
 renderMenu();
 renderRestaurant();
+renderDrinks();
 renderTrending();
 updateCartUI();
 initStreak();
