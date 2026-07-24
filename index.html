@@ -101,7 +101,7 @@
   .cat-quicknav{max-width:1100px;margin:0 auto;padding:0 24px 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
   .cat-card{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;background:var(--enamel);border:1.5px solid var(--line);border-radius:16px;padding:20px 12px;cursor:pointer;font-family:'Work Sans', sans-serif;transition:transform 0.15s, border-color 0.15s;}
   .cat-card:hover{transform:translateY(-3px);border-color:var(--teal);}
-  .cat-card-ico{font-size:30px;line-height:1;margin-bottom:6px;}
+  .cat-card-ico{font-size:26px;line-height:1;margin-bottom:6px;color:var(--teal);}
   .cat-card-n{font-family:'Baloo 2', sans-serif;font-weight:700;font-size:14.5px;color:var(--ink);}
   .cat-card-p{font-family:'Space Mono', monospace;font-size:11px;color:var(--teal-dark);}
   @media (max-width:700px){ .cat-quicknav{grid-template-columns:repeat(2,1fr);} }
@@ -413,22 +413,22 @@
 
 <div class="cat-quicknav" id="catQuicknav">
   <button class="cat-card" onclick="scrollToMenu()">
-    <span class="cat-card-ico">🍜</span>
+    <span class="cat-card-ico"><i class="bi bi-egg-fried"></i></span>
     <span class="cat-card-n">The Hawker Centre</span>
     <span class="cat-card-p">33 dishes · 6 cuisines</span>
   </button>
   <button class="cat-card" onclick="scrollToRestaurant()">
-    <span class="cat-card-ico">💎</span>
+    <span class="cat-card-ico"><i class="bi bi-gem"></i></span>
     <span class="cat-card-n">The Restaurant</span>
     <span class="cat-card-p">20 dishes · ATAS tier</span>
   </button>
   <button class="cat-card" onclick="scrollToDrinks()">
-    <span class="cat-card-ico">🥤</span>
+    <span class="cat-card-ico"><i class="bi bi-cup-straw"></i></span>
     <span class="cat-card-n">The Drink Store</span>
     <span class="cat-card-p">8 drinks · kopi &amp; more</span>
   </button>
   <button class="cat-card" onclick="scrollToDesserts()">
-    <span class="cat-card-ico">🍰</span>
+    <span class="cat-card-ico"><i class="bi bi-cake2"></i></span>
     <span class="cat-card-n">The Dessert Bar</span>
     <span class="cat-card-p">8 desserts · zero guilt</span>
   </button>
