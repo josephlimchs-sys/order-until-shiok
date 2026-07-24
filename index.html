@@ -28,6 +28,8 @@
   .brand .badge{background:var(--turmeric);color:var(--teal-dark);border-radius:8px;padding:4px 8px;font-size:11.5px;font-family:'Work Sans', sans-serif;font-weight:600;}
   .topbar-right{display:flex;align-items:center;gap:14px;font-size:13.5px;}
   .cart-btn{display:flex;align-items:center;gap:8px;background:var(--enamel);color:var(--teal-dark);border:none;border-radius:999px;padding:9px 16px;font-weight:600;font-size:14px;cursor:pointer;font-family:'Work Sans', sans-serif;}
+  .about-link{background:none;border:none;color:var(--enamel);font-weight:600;font-size:14px;cursor:pointer;font-family:'Work Sans', sans-serif;padding:9px 4px;opacity:0.92;}
+  .about-link:hover{opacity:1;text-decoration:underline;}
   .cart-btn:hover{background:var(--turmeric);}
   .cart-count{background:var(--red);color:var(--enamel);border-radius:999px;min-width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;padding:0 5px;}
 
@@ -46,6 +48,7 @@
   .hero-banner-full::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg, rgba(8,63,59,0.88) 0%, rgba(8,63,59,0.72) 32%, rgba(8,63,59,0.32) 58%, rgba(8,63,59,0.08) 78%);}
   .hero-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:70px 24px;width:100%;box-sizing:border-box;}
   .hero-text{max-width:600px;}
+  .hero-badge{display:block;width:fit-content;background:var(--turmeric);color:var(--teal-dark);font-weight:700;font-size:12.5px;padding:6px 14px;border-radius:999px;margin-bottom:14px;font-family:'Work Sans', sans-serif;}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--enamel);border:1.5px solid var(--line);color:var(--teal-dark);font-weight:600;font-size:13px;padding:7px 16px 7px 8px;border-radius:999px;margin-bottom:22px;}
   .eyebrow .wave{background:var(--turmeric);border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;}
   .hero h1{font-size:64px;line-height:0.98;margin:0 0 20px;color:var(--enamel);font-weight:700;letter-spacing:-0.02em;text-shadow:0 4px 24px rgba(0,0,0,0.3);}
@@ -357,9 +360,11 @@
 
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><img src="images/logo_white.png" alt="Order Until Shiok" class="brand-logo"><span class="badge">a free &quot;dopamine site&quot;</span></div>
+    <div class="brand"><img src="images/logo_white.png" alt="Order Until Shiok" class="brand-logo"></div>
     <div class="topbar-right">
       <span class="hide-mobile" id="locLabel"><i class="bi bi-geo-alt-fill"></i> Deliver to: your void deck · 12 min</span>
+      <button class="about-link" onclick="openAbout()">About</button>
+      <button class="about-link" onclick="scrollToFaq()">FAQ</button>
       <button class="cart-btn" onclick="openCart()"><i class="bi bi-receipt"></i> Chit <span class="cart-count" id="cartCount">0</span></button>
     </div>
   </div>
@@ -373,6 +378,7 @@
   </div>
   <div class="hero-inner">
     <div class="hero-text">
+      <span class="hero-badge">A free "Dopamine Site"</span>
       <span class="eyebrow"><span class="wave"><i class="bi bi-people-fill"></i></span> Hi, hungry friend — zero real charges here</span>
       <h1>We don't cook.<br>We fake the <span>bill</span>.</h1>
       <p>Browse hawker classics from every stall in the imaginary centre, customise your spice level, "pay" with a fake NETS card, and track a live rider crossing your void deck. The food never comes — but the craving gets satisfied anyway.</p>
@@ -555,7 +561,6 @@
       <button class="btn-ghost" style="border-color:var(--enamel);color:var(--enamel);" onclick="scrollToHow()">🍽️ See how it works</button>
     </div>
   </div>
-  <div class="promo-emoji-cluster"><i class="bi bi-cup-hot-fill"></i> <i class="bi bi-basket2-fill"></i> <i class="bi bi-cup-straw"></i></div>
 </div>
 
 <footer>
@@ -646,7 +651,17 @@
     <button class="modal-close" onclick="closeTehO()">✕</button>
     <h3>🍵 Buy me a teh-o</h3>
     <p class="sub">This site's free and always will be. If it gave you a little dopamine hit, a teh-o keeps the imaginary kitchen (and the real developer) going.</p>
-    <iframe id='kofiframe' src='https://ko-fi.com/makannevercomes/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:4px;background:#f9f9f9;' height='712' title='makannevercomes'></iframe>
+    <iframe id='kofiframe' src='https://ko-fi.com/orderunitshiok/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:4px;background:#f9f9f9;' height='712' title='orderunitshiok'></iframe>
+  </div>
+</div>
+
+<div class="modal-overlay" id="aboutOverlay">
+  <div class="modal" style="width:480px;">
+    <button class="modal-close" onclick="closeAbout()">✕</button>
+    <h3>🧠 What's a "dopamine site"?</h3>
+    <p class="sub">A dopamine site is a joke website that simulates the experience of doing something — ordering supper, shopping, scrolling a feed — without any of it being real. No real menu, no real stall, no real rider. You click, you feel that little hit of "yes, food is coming," and then... nothing arrives. Because nothing was ever ordered.</p>
+    <p class="sub">Order Until Shiok is Singapore's own take on the format: a fake hawker-delivery app built purely so the craving (and the browsing, and the "chit" at checkout) feels real — minus the bill, the wait, and the calories.</p>
+    <p class="sub">It's free, it's for fun, and it doesn't collect payment or deliver food. If you want the original that inspired this genre, look up <b>foodnevercomes.com</b>.</p>
   </div>
 </div>
 
@@ -1227,6 +1242,8 @@ function closeCouriers(){ document.getElementById('courierOverlay').classList.re
 
 function openTehO(){ document.getElementById('tehOOverlay').classList.add('open'); }
 function closeTehO(){ document.getElementById('tehOOverlay').classList.remove('open'); }
+function openAbout(){ document.getElementById('aboutOverlay').classList.add('open'); }
+function closeAbout(){ document.getElementById('aboutOverlay').classList.remove('open'); }
 
 // ---------- hero stat ----------
 let ordersDelivered = 0;
@@ -1237,6 +1254,7 @@ function refreshOrdersStat(){
 window._bumpOrdersStat = refreshOrdersStat;
 
 function scrollToMenu(){ document.getElementById('menu-section').scrollIntoView({behavior:'smooth'}); }
+function scrollToFaq(){ document.getElementById('faq-section').scrollIntoView({behavior:'smooth'}); }
 function scrollToRestaurant(){ document.getElementById('restaurant-section').scrollIntoView({behavior:'smooth'}); }
 function scrollToDrinks(){ document.getElementById('drinks-section').scrollIntoView({behavior:'smooth'}); }
 function scrollToDesserts(){ document.getElementById('desserts-section').scrollIntoView({behavior:'smooth'}); }
