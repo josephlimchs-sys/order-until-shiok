@@ -33,6 +33,23 @@
   .cart-btn:hover{background:var(--turmeric);}
   .cart-count{background:var(--red);color:var(--enamel);border-radius:999px;min-width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;padding:0 5px;}
 
+  .search-row{background:var(--teal-dark);padding:20px 24px 14px;}
+  .search-box{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:10px;background:var(--enamel);border-radius:999px;padding:10px 18px;}
+  .search-box i{color:#8a8074;font-size:15px;flex-shrink:0;}
+  .search-box input{border:none;outline:none;background:transparent;font-family:'Work Sans', sans-serif;font-size:14px;flex:1;color:var(--ink);min-width:0;}
+  .search-box input::placeholder{color:#b0a798;}
+  .search-clear{display:none;background:none;border:none;cursor:pointer;color:#8a8074;font-size:15px;padding:2px;flex-shrink:0;}
+  .search-clear.show{display:flex;}
+  .search-empty{padding:26px 4px;color:#8a8074;font-size:14px;grid-column:1/-1;}
+
+  .order-notif-wrap{position:fixed;left:20px;bottom:20px;z-index:62;display:flex;flex-direction:column-reverse;gap:10px;pointer-events:none;}
+  .order-notif{pointer-events:auto;display:flex;align-items:center;gap:10px;background:var(--enamel);border:1.5px solid var(--line);border-radius:16px 16px 16px 4px;padding:10px 16px 10px 10px;box-shadow:0 10px 26px rgba(0,0,0,0.18);max-width:280px;opacity:0;transform:translateY(14px);transition:opacity 0.35s, transform 0.35s;}
+  .order-notif.show{opacity:1;transform:translateY(0);}
+  .order-notif-avatar{width:34px;height:34px;border-radius:50%;background:var(--mint);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+  .order-notif-text{font-size:13px;line-height:1.35;color:var(--ink);}
+  .order-notif-text b{font-family:'Baloo 2', sans-serif;}
+  @media (max-width:600px){ .order-notif-wrap{left:12px;bottom:12px;} .order-notif{max-width:230px;} }
+
   .streak-strip{max-width:1100px;margin:0 auto;padding:14px 24px 30px;}
   .streak-card{display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,#FFF3E4,#F3ECDC);border:1.5px solid var(--line);border-radius:14px;padding:10px 16px;}
   .streak-cat{font-size:28px;line-height:1;flex-shrink:0;}
@@ -245,6 +262,45 @@
   .modal-close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:14px;cursor:pointer;}
   .modal h3{font-size:20px;margin:0 0 4px;color:var(--teal-dark);}
   .modal .sub{font-size:14px;color:#8a8074;margin:0 0 18px;}
+
+  .tour-intro-modal{text-align:center;width:400px;}
+  .tour-intro-emoji{font-size:42px;margin-bottom:4px;}
+  .tour-intro-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:4px;}
+  .tour-btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:var(--enamel);border:none;border-radius:999px;padding:12px 22px;font-weight:700;font-size:14.5px;cursor:pointer;font-family:'Baloo 2', sans-serif;}
+  .tour-btn-primary:hover{background:var(--teal-dark);}
+  .tour-btn-ghost{background:var(--cream);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:12px 22px;font-weight:600;font-size:14.5px;cursor:pointer;font-family:'Work Sans', sans-serif;}
+  .tour-btn-ghost:hover{background:#eee2cc;}
+
+  .tour-blocker{display:none;position:fixed;inset:0;z-index:500;background:transparent;}
+  .tour-blocker.show{display:block;}
+  .tour-spotlight{display:none;position:fixed;z-index:501;border-radius:14px;box-shadow:0 0 0 9999px rgba(36,31,26,0.62);pointer-events:none;transition:top 0.35s ease, left 0.35s ease, width 0.35s ease, height 0.35s ease;}
+  .tour-spotlight.show{display:block;}
+  .tour-card{display:none;position:fixed;z-index:502;background:var(--enamel);border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,0.32);padding:18px 20px;width:280px;max-width:88vw;transition:top 0.3s ease, left 0.3s ease;}
+  .tour-card.show{display:block;}
+  .tour-card.arrow-top::before{content:'';position:absolute;top:-7px;left:var(--tour-arrow-left, 50%);transform:translateX(-50%) rotate(45deg);width:14px;height:14px;background:var(--enamel);border-radius:3px;}
+  .tour-card.arrow-bottom::before{content:'';position:absolute;bottom:-7px;top:auto;left:var(--tour-arrow-left, 50%);transform:translateX(-50%) rotate(45deg);width:14px;height:14px;background:var(--enamel);border-radius:3px;}
+  .tour-step-badge{display:inline-flex;align-items:center;gap:6px;background:var(--mint);color:#fff;font-weight:700;font-size:11px;padding:4px 10px;border-radius:999px;margin-bottom:10px;font-family:'Work Sans', sans-serif;letter-spacing:0.02em;}
+  .tour-title{font-family:'Baloo 2', sans-serif;font-size:17px;margin:0 0 6px;color:var(--ink);}
+  .tour-desc{font-size:13.5px;color:#5b5448;line-height:1.5;margin:0 0 16px;}
+  .tour-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .tour-dots{display:flex;gap:5px;}
+  .tour-dot{width:7px;height:7px;border-radius:50%;background:var(--line);}
+  .tour-dot.active{width:18px;border-radius:4px;background:var(--teal);}
+  .tour-actions{display:flex;align-items:center;gap:12px;}
+  .tour-skip{background:none;border:none;color:#8a8074;font-size:12.5px;cursor:pointer;font-family:'Work Sans', sans-serif;}
+  .tour-skip:hover{color:var(--ink);text-decoration:underline;}
+  .tour-next{background:var(--teal);color:var(--enamel);border:none;border-radius:999px;padding:9px 18px;font-weight:700;font-size:13px;cursor:pointer;font-family:'Baloo 2', sans-serif;white-space:nowrap;}
+  .tour-next:hover{background:var(--teal-dark);}
+  @media (max-width:480px){ .tour-card{width:240px;} }
+
+  .tour-hint-wrap{position:relative;display:inline-flex;}
+  .tour-hint{display:none;position:absolute;top:calc(100% + 13px);right:-14px;width:190px;background:var(--enamel);color:var(--ink);border:1.5px solid var(--line);border-radius:14px 14px 4px 14px;padding:10px 26px 10px 14px;font-size:12.5px;line-height:1.4;box-shadow:0 10px 26px rgba(0,0,0,0.2);z-index:65;cursor:pointer;font-family:'Work Sans', sans-serif;}
+  .tour-hint.show{display:block;animation:tourHintPop 0.3s ease;}
+  .tour-hint::before{content:'';position:absolute;top:-7px;right:18px;width:12px;height:12px;background:var(--enamel);border-left:1.5px solid var(--line);border-top:1.5px solid var(--line);transform:rotate(45deg);}
+  .tour-hint b{color:var(--teal-dark);}
+  .tour-hint-x{position:absolute;top:6px;right:7px;background:none;border:none;font-size:10.5px;color:#8a8074;cursor:pointer;padding:2px;line-height:1;}
+  .tour-hint-x:hover{color:var(--ink);}
+  @keyframes tourHintPop{ from{opacity:0;transform:translateY(-6px);} to{opacity:1;transform:translateY(0);} }
   .fake-card{background:var(--teal);color:var(--enamel);border-radius:14px;padding:18px 20px;margin-bottom:16px;font-family:'Space Mono', monospace;}
   .fake-card .num{font-size:18px;letter-spacing:2px;margin:14px 0 16px;}
   .fake-card .row{display:flex;justify-content:space-between;font-size:14px;opacity:0.85;}
@@ -351,7 +407,7 @@
 
   @media (max-width:760px){
     .perks{grid-template-columns:1fr;} .how-steps{grid-template-columns:1fr;}
-    .hero h1{font-size:38px;} .topbar-right span.hide-mobile{display:none;}
+    .hero h1{font-size:38px;} .topbar-right span.hide-mobile, .topbar-right button.hide-mobile, .topbar-right div.hide-mobile{display:none;}
   }
 </style>
 </head>
@@ -362,12 +418,28 @@
     <div class="brand"><img src="images/logo_white.png" alt="Order Until Shiok" class="brand-logo"></div>
     <div class="topbar-right">
       <span class="hide-mobile" id="locLabel"><i class="bi bi-geo-alt-fill"></i> Deliver to: your void deck · 12 min</span>
-      <button class="about-link" onclick="openAbout()">About</button>
-      <button class="about-link" onclick="scrollToFaq()">FAQ</button>
+      <button class="about-link" id="aboutLinkBtn" onclick="openAbout()">About</button>
+      <button class="about-link" id="faqLinkBtn" onclick="scrollToFaq()">FAQ</button>
+      <div class="tour-hint-wrap hide-mobile" id="tourHintWrap">
+        <button class="about-link" id="tourTabBtn" onclick="startTourFromHint()" title="Take the guided tour"><i class="bi bi-compass"></i> Tour</button>
+        <div class="tour-hint" id="tourHint" onclick="startTourFromHint()">
+          <button class="tour-hint-x" onclick="dismissTourHint(event)" aria-label="Dismiss">✕</button>
+          <b>New!</b> Click here to take a guided tour 🧭
+        </div>
+      </div>
       <button class="cart-btn" onclick="openCart()"><i class="bi bi-receipt"></i> Chit <span class="cart-count" id="cartCount">0</span></button>
     </div>
   </div>
+  <div class="search-row">
+    <div class="search-box">
+      <i class="bi bi-search"></i>
+      <input type="text" id="searchInput" placeholder="Search dishes, stalls, cuisines…" oninput="handleSearch(this.value)" aria-label="Search the menu">
+      <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Clear search"><i class="bi bi-x-circle-fill"></i></button>
+    </div>
+  </div>
 </div>
+
+<div class="order-notif-wrap" id="orderNotifWrap"></div>
 
 <div class="streak-strip"><div class="streak-card" id="streakCard"></div></div>
 
@@ -713,6 +785,25 @@
   </div>
 </div>
 
+<!-- WELCOME TOUR: intro choice screen -->
+<div class="modal-overlay" id="tourIntroOverlay">
+  <div class="modal tour-intro-modal">
+    <button class="modal-close" onclick="declineTour()">✕</button>
+    <div class="tour-intro-emoji">🧭</div>
+    <h3 style="text-align:center;">New here? Take the 60-second tour</h3>
+    <p class="sub" style="text-align:center;">Eight quick stops — About, FAQ, search, cuisines, customising a dish, your chit, Aunty the chatbot, and the tip jar — so you know exactly how to order until shiok.</p>
+    <div class="tour-intro-actions">
+      <button class="tour-btn-primary" onclick="startTour()"><i class="bi bi-play-fill"></i> Start tour</button>
+      <button class="tour-btn-ghost" onclick="declineTour()">No need, thanks</button>
+    </div>
+  </div>
+</div>
+
+<!-- WELCOME TOUR: click-blocker, spotlight and floating tip card -->
+<div class="tour-blocker" id="tourBlocker"></div>
+<div class="tour-spotlight" id="tourSpotlight"></div>
+<div class="tour-card" id="tourCard"></div>
+
 <script>
 const WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
 const US = (id)=>`https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=80`;
@@ -807,7 +898,26 @@ function getGroups(d){
 }
 
 let activeCat = 'all';
+let searchQuery = '';
 let cart = {}; // key -> {dishId, opts:[i,i,i], qty}
+
+function matchesSearch(d){
+  if(!searchQuery) return true;
+  const q = searchQuery.toLowerCase();
+  return (d.name+' '+d.desc+' '+d.stall+' '+d.cat).toLowerCase().includes(q);
+}
+function handleSearch(value){
+  searchQuery = value.trim();
+  document.getElementById('searchClear').classList.toggle('show', !!searchQuery);
+  renderMenu(); renderRestaurant(); renderDrinks(); renderDesserts();
+}
+function clearSearch(){
+  searchQuery = '';
+  const input = document.getElementById('searchInput');
+  if(input) input.value = '';
+  document.getElementById('searchClear').classList.remove('show');
+  renderMenu(); renderRestaurant(); renderDrinks(); renderDesserts();
+}
 
 function money(n){ return '$'+n.toFixed(2); }
 // deterministic "rating" per dish so it looks real but never changes on refresh
@@ -836,29 +946,32 @@ function dishCardHTML(d){
       </div>
     </div>`;
 }
+function noResultsHTML(){
+  return `<p class="search-empty"><i class="bi bi-emoji-frown"></i> No dishes match "${searchQuery}" — try another word.</p>`;
+}
 function renderMenu(){
   const grid = document.getElementById('menuGrid');
   const hawkerDishes = DISHES.filter(d=>d.cat!=='premium' && d.cat!=='drinks' && d.cat!=='desserts');
-  const list = activeCat==='all' ? hawkerDishes : hawkerDishes.filter(d=>d.cat===activeCat);
-  grid.innerHTML = list.map(dishCardHTML).join('');
+  const list = (activeCat==='all' ? hawkerDishes : hawkerDishes.filter(d=>d.cat===activeCat)).filter(matchesSearch);
+  grid.innerHTML = list.length ? list.map(dishCardHTML).join('') : (searchQuery ? noResultsHTML() : '');
 }
 function renderRestaurant(){
   const grid = document.getElementById('restaurantGrid');
   if(!grid) return;
-  const list = DISHES.filter(d=>d.cat==='premium');
-  grid.innerHTML = list.map(dishCardHTML).join('');
+  const list = DISHES.filter(d=>d.cat==='premium').filter(matchesSearch);
+  grid.innerHTML = list.length ? list.map(dishCardHTML).join('') : (searchQuery ? noResultsHTML() : '');
 }
 function renderDrinks(){
   const grid = document.getElementById('drinksGrid');
   if(!grid) return;
-  const list = DISHES.filter(d=>d.cat==='drinks');
-  grid.innerHTML = list.map(dishCardHTML).join('');
+  const list = DISHES.filter(d=>d.cat==='drinks').filter(matchesSearch);
+  grid.innerHTML = list.length ? list.map(dishCardHTML).join('') : (searchQuery ? noResultsHTML() : '');
 }
 function renderDesserts(){
   const grid = document.getElementById('dessertsGrid');
   if(!grid) return;
-  const list = DISHES.filter(d=>d.cat==='desserts');
-  grid.innerHTML = list.map(dishCardHTML).join('');
+  const list = DISHES.filter(d=>d.cat==='desserts').filter(matchesSearch);
+  grid.innerHTML = list.length ? list.map(dishCardHTML).join('') : (searchQuery ? noResultsHTML() : '');
 }
 
 // ---------- customize sheet ----------
@@ -1115,6 +1228,190 @@ const CALL_LINES = [
   "📞 Call connects to a random kopitiam instead",
 ];
 
+// ---------- live "someone just ordered" popups ----------
+const NOTIF_NAMES = [
+  "MakanKaki88","ShiokSial","KiasuAuntie","VoidDeckVIP","HawkerHero",
+  "TehTarikTim","LaksaLover","ChopeQueen","NasiLemakNinja","YumchaBoss",
+  "SgFoodie2024","MrtMakanMan","OtahOtakOK","KopiOkaviar","SatayStanley",
+  "PrataPro","BakChorBae","WokHeiWendy","CurryPuffCarl","RojakRachel",
+];
+const NOTIF_AVATARS = ["😋","🤤","😍","🙌","👍","😆","🥢","🫶"];
+function showOrderNotif(){
+  const wrap = document.getElementById('orderNotifWrap');
+  if(!wrap) return;
+  const d = DISHES[Math.floor(Math.random()*DISHES.length)];
+  const name = NOTIF_NAMES[Math.floor(Math.random()*NOTIF_NAMES.length)];
+  const avatar = NOTIF_AVATARS[Math.floor(Math.random()*NOTIF_AVATARS.length)];
+  const el = document.createElement('div');
+  el.className = 'order-notif';
+  el.innerHTML = `<span class="order-notif-avatar">${avatar}</span><span class="order-notif-text"><b>${name}</b> just ordered <b>${d.name} ${d.emoji}</b>!</span>`;
+  wrap.appendChild(el);
+  requestAnimationFrame(()=> el.classList.add('show'));
+  setTimeout(()=>{
+    el.classList.remove('show');
+    setTimeout(()=> el.remove(), 400);
+  }, 4200);
+}
+function scheduleOrderNotifs(){
+  showOrderNotif();
+  const delay = 7000 + Math.random()*8000;
+  setTimeout(scheduleOrderNotifs, delay);
+}
+
+// ---------- welcome tour ----------
+const TOUR_STEPS = [
+  {sel:'#aboutLinkBtn', title:'ℹ️ About the site', desc:'Curious what a "dopamine site" is and why the food never comes? It\'s all explained here.'},
+  {sel:'#faqLinkBtn', title:'❓ FAQ', desc:'Wondering if it\'s safe, free, or a scam? The FAQ answers the common questions.'},
+  {sel:'#searchInput', title:'🔍 Find any dish fast', desc:'Type a dish, stall, or cuisine here — the whole menu filters live, no scrolling needed.'},
+  {sel:'#tabs', title:'🍽️ Browse by cuisine', desc:'Flip between Chinese, Malay, Indian, Peranakan and Kopitiam stalls with a tap.'},
+  {sel:'#menuGrid .add-btn', title:'➕ Customise & add to your chit', desc:'Pick a dish, set your spice level and add-ons, then add it straight to your chit.'},
+  {sel:'.cart-btn', title:'🧾 Check your chit', desc:'Tap Chit anytime to review your order and "pay" with a fake NETS card — always $0.'},
+  {sel:'#jasmineBtn', title:'🌸 Ask Aunty', desc:'Not sure what to order? Chat with Aunty — tell her a craving and she\'ll recommend dishes.'},
+  {sel:'.teh-o-btn', title:'☕ Buy me a teh-o', desc:'If this gave you a little dopamine hit, you can leave an optional tip here. Never required, always appreciated.'},
+];
+let tourIndex = 0;
+
+function maybeShowTourIntro(){
+  if(localStorage.getItem('mnc_tour_seen')) return;
+  setTimeout(()=>{
+    const ov = document.getElementById('tourIntroOverlay');
+    if(ov) ov.classList.add('open');
+  }, 1800);
+}
+function declineTour(){
+  document.getElementById('tourIntroOverlay').classList.remove('open');
+  localStorage.setItem('mnc_tour_seen','1');
+}
+function startTour(){
+  document.getElementById('tourIntroOverlay').classList.remove('open');
+  localStorage.setItem('mnc_tour_seen','1');
+  hideTourHint();
+  tourIndex = 0;
+  document.getElementById('tourBlocker').classList.add('show');
+  showTourStep(0);
+}
+function endTour(){
+  document.getElementById('tourBlocker').classList.remove('show');
+  document.getElementById('tourSpotlight').classList.remove('show');
+  document.getElementById('tourCard').classList.remove('show','arrow-top','arrow-bottom');
+}
+
+// ---------- "Tour" tab callout hint ----------
+function maybeShowTourHint(){
+  if(window.innerWidth <= 760) return; // Tour tab itself is hidden on mobile
+  setTimeout(()=>{
+    const overlay = document.getElementById('tourIntroOverlay');
+    if(overlay && overlay.classList.contains('open')) return; // don't double up with the main intro
+    if(document.getElementById('tourBlocker').classList.contains('show')) return; // tour already running
+    document.getElementById('tourHint').classList.add('show');
+    document.addEventListener('click', tourHintOutsideClick);
+  }, 3000);
+}
+function hideTourHint(){
+  document.getElementById('tourHint').classList.remove('show');
+  document.removeEventListener('click', tourHintOutsideClick);
+}
+function tourHintOutsideClick(e){
+  if(!e.target.closest('#tourHintWrap')) hideTourHint();
+}
+function dismissTourHint(e){
+  e.stopPropagation();
+  hideTourHint();
+}
+function startTourFromHint(){
+  hideTourHint();
+  startTour();
+}
+function nextTourStep(){
+  if(tourIndex >= TOUR_STEPS.length-1){ endTour(); return; }
+  tourIndex++;
+  showTourStep(tourIndex);
+}
+function showTourStep(i){
+  const step = TOUR_STEPS[i];
+  const el = document.querySelector(step.sel);
+  if(!el){
+    if(i < TOUR_STEPS.length-1){ tourIndex = i+1; showTourStep(tourIndex); } else endTour();
+    return;
+  }
+  const isFixed = getComputedStyle(el).position === 'fixed';
+  if(isFixed){
+    // fixed-position elements (e.g. the chat button) are already viewport-relative —
+    // scrolling the page can jump it out of place, so just position immediately.
+    positionTourStep(el, step, i);
+  } else {
+    el.scrollIntoView({behavior:'smooth', block:'center'});
+    setTimeout(()=> positionTourStep(el, step, i), 380);
+  }
+}
+function positionTourStep(el, step, i){
+  const r = el.getBoundingClientRect();
+  const pad = 8;
+  const spot = document.getElementById('tourSpotlight');
+  spot.style.top = (r.top-pad)+'px';
+  spot.style.left = (r.left-pad)+'px';
+  spot.style.width = (r.width+pad*2)+'px';
+  spot.style.height = (r.height+pad*2)+'px';
+  spot.classList.add('show');
+
+  const card = document.getElementById('tourCard');
+  // render off-screen first so we can measure its real size before placing it
+  card.style.top = '-9999px';
+  card.style.left = '-9999px';
+  card.className = 'tour-card show';
+  card.innerHTML = `
+    <div class="tour-step-badge">Step ${i+1} of ${TOUR_STEPS.length}</div>
+    <p class="tour-title">${step.title}</p>
+    <p class="tour-desc">${step.desc}</p>
+    <div class="tour-footer">
+      <div class="tour-dots">${TOUR_STEPS.map((_,di)=>`<span class="tour-dot ${di===i?'active':''}"></span>`).join('')}</div>
+      <div class="tour-actions">
+        <button class="tour-skip" onclick="endTour()">Skip</button>
+        <button class="tour-next" onclick="nextTourStep()">${i===TOUR_STEPS.length-1?'Got it! 🎉':'Next'}</button>
+      </div>
+    </div>`;
+
+  const cardW = card.offsetWidth || 280;
+  const cardH = card.offsetHeight || 168;
+  const gap = 14;
+  const spaceAbove = r.top;
+  const spaceBelow = window.innerHeight - r.bottom;
+  let top, arrowClass;
+  // Prefer placing the card above the icon whenever there's more (or enough) room above —
+  // this is what keeps it correctly pointing down at bottom-of-screen icons like the
+  // chatbot button and the tip jar, instead of trying (and failing) to fit below them.
+  if(spaceAbove >= cardH + gap + 14 && (spaceAbove >= spaceBelow || spaceBelow < cardH + gap + 14)){
+    top = Math.max(14, r.top - cardH - gap);
+    arrowClass = 'arrow-bottom';
+  } else {
+    top = r.bottom + gap;
+    arrowClass = 'arrow-top';
+  }
+  // Use the visible (on-screen) slice of the target's rect, not its full width —
+  // this keeps the balloon locked onto the actual visible element even when the
+  // target is wider than the viewport (e.g. the cuisine tabs bar) rather than
+  // drifting off toward an off-screen "center".
+  const visLeft = Math.max(r.left, 0);
+  const visRight = Math.min(r.right, window.innerWidth);
+  const targetCenterX = (visLeft + visRight) / 2;
+  let left = targetCenterX - cardW/2;
+  left = Math.max(14, Math.min(left, window.innerWidth - cardW - 14));
+  const arrowLeft = Math.max(16, Math.min(targetCenterX - left, cardW - 16));
+  card.style.setProperty('--tour-arrow-left', arrowLeft+'px');
+  card.style.top = top+'px';
+  card.style.left = left+'px';
+  card.className = 'tour-card show ' + arrowClass;
+}
+function repositionActiveTourStep(){
+  if(!document.getElementById('tourBlocker').classList.contains('show')) return;
+  const step = TOUR_STEPS[tourIndex];
+  if(!step) return;
+  const el = document.querySelector(step.sel);
+  if(el) positionTourStep(el, step, tourIndex);
+}
+window.addEventListener('resize', ()=> requestAnimationFrame(repositionActiveTourStep));
+window.addEventListener('scroll', ()=> requestAnimationFrame(repositionActiveTourStep), true);
+
 function showCallToast(){
   const el = document.createElement('div');
   el.textContent = CALL_LINES[Math.floor(Math.random()*CALL_LINES.length)];
@@ -1343,6 +1640,9 @@ updateCartUI();
 initStreak();
 refreshOrdersStat();
 resumeLiveOrder();
+setTimeout(scheduleOrderNotifs, 3500);
+maybeShowTourIntro();
+maybeShowTourHint();
 
 // ---------- open dish from a Jasmine "new tab" recommendation link ----------
 function openDishFromHash(){
